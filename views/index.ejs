@@ -1,0 +1,39 @@
+<%- include("partials/header") %>
+<header>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Campgrounds</h1>
+            <p class="lead">Here you can find your new vacation destiny</p>
+            <hr>
+            <p>Do you want to create a new Campground?</p>
+            <a href="/campgrounds/new" class="btn btn-info">New Campground</a>
+
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <% camp.forEach((camp)=> {%>
+        <div class="col-sm-6 col-md-4 mb-5">
+            <div class="card">
+                <img class="card-img-top" src="<%=camp.image %>" alt="<%=camp.name %>">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%= camp.name %>
+                    </h4>
+                    <p>
+                        <%= camp.description %>
+                    </p>
+                    <div class="card-footer bg-transparent pb-0">
+                        <a href="/campgrounds/<%= camp._id %>" class="btn btn-success">More info</a>
+                        <a href="/campgrounds/<%= camp._id %>/edit" class="btn btn-warning">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+
+    </div>
+</div>
+<%- include("partials/footer") %>
