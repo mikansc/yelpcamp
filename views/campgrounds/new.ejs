@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+  <div class="w-50 m-auto">
+    <h2 class="title">Novo campground</h2>
+    <div class="columns my-6">
+      <div class="column is-three-fifths is-offset-one-fifth">
+        <form action="/campgrounds" method="POST">
+          <div class="field">
+            <label for="name">Location name:</label>
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="text"
+                placeholder="Name"
+                name="camp[name]"
+                id="name"
+                required
+              />
+              <span class="icon is-left">
+                <i class="fas fa-map-marker-alt"> </i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="image">Image URL:</label>
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="text"
+                placeholder="image url"
+                name="camp[image]"
+                id="image"
+                required
+              />
+              <span class="icon is-left">
+                <i class="fas fa-camera-retro"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="description">Location info:</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                name="camp[description]"
+                id="description"
+                cols="30"
+                rows="10"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <button class="button is-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-3">
+      <p class="lead">YelpCamp</p>
+      <ul class="list-group">
+        <li class="list-group-item active">Info 1</li>
+        <li class="list-group-item">Info 2</li>
+        <li class="list-group-item">Info 3</li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <img class="card-img-top" src="<%= camp.image %>" alt="" />
+        <div class="card-body">
+          <h5 class="card-subtitle text-muted text-right">$9.99</h5>
+          <h5 class="card-title"><%= camp.name %></h5>
+          <p class="card-text"><%= camp.description %></p>
+          <form
+            action="/campgrounds/<%= camp._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-warning">Delete Campground</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <a
+            href="/campgrounds/<&= camp._id&>/comments/new"
+            class="btn btn-success w-25"
+            >New comment</a
+          >
+          <h3>Comments:</h3>
+          <% camp.comments.forEach(data => {%>
+          <p>
+            <strong><%= data.author %></strong> - <%= data.text %> (<a href="#"
+              >edit...</a
+            >)
+          </p>
+          <%})%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <a href="/campgrounds">Campgrounds</a> -->
+</div>
+
+<%- include("../partials/footer") %>
