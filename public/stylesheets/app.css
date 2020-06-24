@@ -1,0 +1,6 @@
+.has-bg-image {
+  width: 100%;
+  height: 100%;
+  background: bottom url('../images/yelp-bg.jpg');
+  background-blend-mode: multiply;
+}
