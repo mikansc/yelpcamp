@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="container mt-3">
   <div class="w-50 m-auto">
-    <h2>Novo comentário a <%= camp.name%></h2>
+    <h2>Novo comentário a <%= camp.name %></h2>
     <form action="/campgrounds/<%= camp._id %>/comments" method="POST">
       <div class="form-group">
         <label for="author">Author name:</label>

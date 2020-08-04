@@ -4,3 +4,7 @@
   background: bottom url('../images/yelp-bg.jpg');
   background-blend-mode: multiply;
 }
+
+.campground-image {
+  object-fit: cover;
+}

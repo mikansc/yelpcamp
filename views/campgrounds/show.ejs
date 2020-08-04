@@ -1,47 +1,127 @@
 <% layout('layouts/boilerplate') %>
-<div class="container">
-  <div class="row mt-4">
-    <div class="col-md-3">
-      <p class="lead">YelpCamp</p>
-      <ul class="list-group">
-        <li class="list-group-item active">Info 1</li>
-        <li class="list-group-item">Info 2</li>
-        <li class="list-group-item">Info 3</li>
-      </ul>
-    </div>
-    <div class="col-md-9">
-      <div class="card">
-        <img class="card-img-top" src="<%= camp.image %>" alt="" />
-        <div class="card-body">
-          <h5 class="card-subtitle text-muted text-right">$9.99</h5>
-          <h5 class="card-title"><%= camp.name %></h5>
-          <p class="card-text"><%= camp.description %></p>
-          <form
-            action="/campgrounds/<%= camp._id %>?_method=DELETE"
-            method="POST"
-          >
-            <button class="btn btn-warning">Delete Campground</button>
-          </form>
+<section class="container my-4">
+  <div class="columns">
+    <div class="column is-one-third">
+      <aside class="card">
+        <div class="card-content">
+          <div class="menu">
+            <h3 class="menu-label">Campground details</h3>
+            <div>
+              <p class="panel-block">Cost:</p>
+              <p class="panel-block">Address:</p>
+              <div class="panel-block">
+                <div class="columns">
+                  <div class="column">
+                    <form
+                      action="/campgrounds/<%= camp._id %>?_method=DELETE"
+                      method="POST"
+                    >
+                      <button class="button">Delete Campground</button>
+                    </form>
+                  </div>
+                  <div class="column">
+                    <a
+                      href="/campgrounds/<%= camp._id %>/edit"
+                      class="button is-warning"
+                    >
+                      <span class="icon">
+                        <i class="far fa-edit"></i>
+                      </span>
+                      <span>Edit</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-          <a
-            href="/campgrounds/<&= camp._id&>/comments/new"
-            class="btn btn-success w-25"
-            >New comment</a
-          >
-          <h3>Comments:</h3>
-          <% camp.comments.forEach(data => {%>
-          <p>
-            <strong><%= data.author %></strong> - <%= data.text %> (<a href="#"
-              >edit...</a
-            >)
-          </p>
-          <%})%>
+      </aside>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-2by1">
+            <img class="campground-image" src="<%= camp.image %>" alt="" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p class="title is-4"><%= camp.name %></p>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <span class="subtitle is-5">$<strong>9.99</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p class=""><%= camp.description %></p>
+          <div class="columns">
+            <div class="column is-2 is-offset-10">
+              <a
+                href="/campgrounds/<%= camp._id %>/edit"
+                class="button is-warning is-fullwidth"
+              >
+                <span class="icon">
+                  <i class="far fa-edit"></i>
+                </span>
+                <span>Edit</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+      <footer class="card mt-2">
+        <div class="card-content">
+          <div class="columns">
+            <div class="column">
+              <h3 class="title is-6">Comments:</h3>
+            </div>
+            <div class="column has-text-right">
+              <a href="/campgrounds/<%= camp._id%>/comments/new" class="button">
+                New comment
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <% camp.comments.forEach(data => {%>
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/128x128.png" />
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= data.author %></strong>
+                  <small> - 09/09/2020</small>
+                  <br />
+                  <%= data.text %>
+                </p>
+              </div>
+            </div>
+            <div class="media-right">
+              <a class="button" href="#"
+                ><span class="icon">
+                  <i class="far fa-edit"></i>
+                </span>
+                <span>Edit</span></a
+              >
+            </div>
+          </article>
+          <%})%>
+        </div>
+      </footer>
     </div>
   </div>
-  <!-- <a href="/campgrounds">Campgrounds</a> -->
-</div>
-
+</section>
 <%- include("../partials/footer") %>

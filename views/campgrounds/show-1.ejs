@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-4">
+  <div class="columns">
+    <div class="column">
+      <div class="panel is-info">
+        <p class="panel-heading">More Information</p>
+        <div class="panel-block">
+          <div class="menu">
+            <ul class="menu-list">
+              <li class="">Info 1</li>
+              <li class="">Info 2</li>
+              <li class="">Info 3</li>
+              <li>
+                <form
+                  action="/campgrounds/<%= camp._id %>?_method=DELETE"
+                  method="POST"
+                >
+                  <button class="button">Delete Campground</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-three-quarters">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-5by3 is-fullwidth">
+            <img src="<%= camp.image %>" alt="" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="level">
+            <h5 class=""><%= camp.name %></h5>
+            <h5 class="">$9.99</h5>
+          </div>
+          <div class="content">
+            <p class=""><%= camp.description %></p>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="">
+            <div class="level">
+              <h3 class="level-item">Comments:</h3>
+              <a
+                href="/campgrounds/<&= camp._id&>/comments/new"
+                class="level-item button"
+                >New comment</a
+              >
+            </div>
+            <div class="columns is-multiline">
+              <% camp.comments.forEach(data => {%>
+              <div class="column is-full">
+                <p>
+                  <strong><%= data.author %></strong> - <%= data.text %> (<a
+                    href="#"
+                    >edit...</a
+                  >)
+                </p>
+              </div>
+              <%})%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <a href="/campgrounds">Campgrounds</a> -->
+</div>
+
+<%- include("../partials/footer") %>
